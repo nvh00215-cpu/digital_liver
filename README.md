@@ -35,6 +35,56 @@ A lobule has on the order of 10⁵ hepatocytes. The agent is a functional unit, 
 
 Horizon is entered in **days** (1–30), converted to hours internally. Time step stays 0.1 h; long runs store fewer frames.
 
+
+### ⚔️ Dual-Pathway Injury Modeling
+The simulation explicitly differentiates between two distinct biological failure modes:
+1.  **Acute Toxicity (The Necrotic Wave):** High-dose exposure causes CYP bioactivation and Glutathione (GSH) depletion. Damage peaks in Zone 3. Neighbor-coupling allows this damage to spread, creating a **localized, dark necrotic wave** moving across the tissue.
+2.  **Chronic Degeneration (The Silent Attrition):** Repeated daily dosing creates a 24-hour moving average of metabolite load. This diffuse load suppresses cellular repair (`k_regen`). Over 30 days, this causes **grid-wide, diffuse chronic attrition** without an acute overdose spike.
+
+---
+
+## 🗺️ The Pipeline Roadmap
+
+This liver model is just the beginning. The architecture is explicitly designed to be modular.
+
+*   ✅ **Phase 1: Digital Liver (Current)** - Spatial hex-lattice, Z1/Z2/Z3 zonation, acute vs. chronic pathways.
+*   🚧 **Phase 2: Digital Kidney** - Nephron-level spatial modeling, cortex vs. medulla gradients, filtration dynamics.
+*   🚧 **Phase 3: Digital Heart** - Cardiomyocyte spatial lattice, electrical propagation, and ischemic injury modeling.
+*   🚧 **Phase 4: Systemic Integration** - A shared 1-compartment plasma network linking all organs, enabling true multi-organ crosstalk and systemic toxicity screening.
+
+---
+
+## ⚡ Key Features
+
+*   **Spatial Hex-Lattice Visualization:** Interactive HTML5 Canvas rendering of the tissue. Watch injury unfold in real-time (healthy pink → amber → dark necrotic).
+*   **Interactive Micro-Diagnostics:** Click any individual hex on the grid to isolate and inspect the exact concentration curves of the parent drug, metabolite, GSH, and damage for Zones 1, 2, and 3 within that specific lobule.
+*   **Zero-Backend, Instant Execution:** The entire multi-scale simulation runs locally in the browser. No server latency, no API costs, and no complex ML inference. A 30-day horizon renders interactively in seconds.
+*   **Automated Clinical Verdicts:** Translates complex spatial data into clear, actionable preclinical outcomes (Safe, Caution, Toxic, Chronic Degeneration, Liver Failure).
+
+---
+
+## 🛠️ Technology Stack
+
+### Core Application
+*   **TypeScript & React 19:** Strict type safety for complex biological state management and a responsive clinical dashboard.
+*   **Vite:** Lightning-fast local development and optimized production bundling.
+
+### Custom Simulation Engine (Built from Scratch)
+*   **Spatial Agent-Based Model (ABM):** Custom algorithms managing the 24×32 hexagonal grid, perfusion fields, and neighbor-coupling stress propagation.
+*   **Explicit Euler ODE Solver:** High-performance math calculating the micro-scale metabolic state for every lobule at `dt = 0.1 h`.
+*   **1-Compartment PK Model:** Custom pharmacokinetic math handling single bolus and repeated 24-hour sawtooth dosing.
+
+### Graphics & Infrastructure
+*   **HTML5 Canvas API:** High-performance 2D rendering for the lobule lattice.
+*   **Vercel:** Deployed as a static site on the global edge network.
+
+> **🛑 What we intentionally did NOT use:**
+> *   **No AI/ML Black Boxes:** We use pure mechanistic ODEs for 100% biological interpretability.
+> *   **No Backend/Databases:** 100% client-side execution ensures zero latency and complete data privacy.
+> *   **No Three.js/WebGL:** 2D Canvas provides vastly superior spatial clarity for tissue zonation without 3D performance overhead.
+
+---
+
 ## How to run
 
 ```bash
