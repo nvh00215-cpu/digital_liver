@@ -1,0 +1,205 @@
+{
+  "design_system_name": "Clinical Soft-UI Dashboard",
+  "description": "A light, clinical/biotech dashboard aesthetic built on soft cards, translucent 3D anatomical renders, thin-weight display numerals, and calm blue/neutral color accents. Optimized for health-monitoring and diagnostic dashboards.",
+
+  "style_keywords": [
+    "clinical",
+    "soft-ui",
+    "airy",
+    "translucent-3d",
+    "data-forward",
+    "minimal-icons",
+    "rounded-cards",
+    "light-mode",
+    "medical-tech"
+  ],
+
+  "color_palette": {
+    "background": {
+      "app_backdrop": "#BFD9F2",
+      "canvas": "#EDEFF2",
+      "card_surface": "#FFFFFF",
+      "card_surface_alt": "#F7F8FA"
+    },
+    "text": {
+      "primary": "#111318",
+      "secondary": "#6B7280",
+      "muted": "#9CA3AF",
+      "on_dark": "#FFFFFF"
+    },
+    "accent": {
+      "primary_blue": "#2F6FED",
+      "primary_blue_light": "#DCE9FB",
+      "secondary_blue_gradient_start": "#8FC7FF",
+      "secondary_blue_gradient_end": "#2F6FED"
+    },
+    "status": {
+      "success": "#2FBF6E",
+      "success_bg": "#E4F7EC",
+      "warning": "#F59E0B",
+      "warning_bg": "#FEF3E2",
+      "danger": "#EF4444",
+      "danger_bg": "#FDE8E8",
+      "info": "#38BDF8",
+      "info_bg": "#E6F7FE"
+    },
+    "chart": {
+      "line_primary": "#2F6FED",
+      "line_gradient_fill": "linear-gradient(180deg, rgba(47,111,237,0.25) 0%, rgba(47,111,237,0) 100%)",
+      "bar_alert": "#EF4444",
+      "bar_neutral": "#DCE9FB",
+      "gauge_track": "#E5E9F0",
+      "gauge_fill": "#2F6FED"
+    },
+    "illustration": {
+      "anatomical_render_tone": "monochrome navy/slate translucent x-ray style, NOT flat color",
+      "anatomical_render_palette": ["#1E2A44", "#3B4A6B", "#8FA3C8", "#FFFFFF"],
+      "flat_icon_illustration_tone": "saturated realistic color (e.g. red lungs), used sparingly for a single focal graphic per card"
+    }
+  },
+
+  "typography": {
+    "font_family_primary": "geometric sans-serif (e.g. 'Inter', 'General Sans', 'Satoshi')",
+    "scale": {
+      "page_title": { "size": "32-36px", "weight": 500, "letter_spacing": "-0.5px" },
+      "section_subtitle": { "size": "14-15px", "weight": 400, "color_ref": "text.secondary" },
+      "card_title": { "size": "14-15px", "weight": 500, "color_ref": "text.primary" },
+      "stat_display_number": { "size": "40-48px", "weight": 300, "note": "thin/light weight for emphasis numerals, NOT bold" },
+      "stat_display_unit": { "size": "13-14px", "weight": 400, "color_ref": "text.muted" },
+      "table_header": { "size": "12-13px", "weight": 500, "color_ref": "text.muted", "letter_spacing": "0.3px", "case": "sentence" },
+      "table_body": { "size": "13-14px", "weight": 400, "color_ref": "text.primary" },
+      "badge_label": { "size": "11-12px", "weight": 500 }
+    }
+  },
+
+  "layout": {
+    "grid_structure": "3-column dashboard grid: left column (stacked stat cards), center column (large focal illustration/visualization card, full height), right column (stacked stat + list cards)",
+    "spacing_unit_base_px": 8,
+    "card_gap_px": 20,
+    "outer_page_padding_px": 32,
+    "responsive_behavior": "columns stack vertically below ~1024px; center focal card always keeps priority/top position on mobile"
+  },
+
+  "components": {
+    "card": {
+      "corner_radius_px": 20,
+      "background": "card_surface",
+      "border": "1px solid rgba(0,0,0,0.04)",
+      "shadow": "0 4px 20px rgba(16,24,40,0.06)",
+      "padding_px": 20,
+      "header_row": "icon-chip + title on left, expand/maximize icon on right, spaced with flex justify-between"
+    },
+    "icon_chip": {
+      "shape": "rounded-square or circle, 32-36px",
+      "background": "accent.primary_blue_light or status_*_bg depending on context",
+      "icon_style": "thin 1.5px stroke line icons, no fill"
+    },
+    "stat_gauge_card": {
+      "structure": "semi-circular arc gauge behind a large thin-weight numeral, small limit/threshold label above the arc",
+      "arc_track_color": "chart.gauge_track",
+      "arc_fill_color": "chart.gauge_fill or status color if out-of-range"
+    },
+    "sparkline_card": {
+      "structure": "large percentage/number top-left, small trend line/area chart bottom filling card width, 2-3 highlighted data-point pills floating above the line showing key values",
+      "line_style": "smooth curve, 2px stroke, gradient fill beneath",
+      "highlight_pill": "small rounded pill with % value, colored by status (red for low/alert, blue/neutral for normal)"
+    },
+    "data_table_card": {
+      "header_row": "icon-chip + title left, primary pill button right (e.g. 'View Records')",
+      "row_style": "checkbox + date + label + category badge, divided by 1px hairline borders, zebra-free (white rows only)",
+      "category_badge": "text-only colored label (no pill background) e.g. orange 'Moderate', green 'Normal', blue 'Mild'"
+    },
+    "list_card": {
+      "structure": "grouped by day/section label (muted small caps), each row = time chip + label + trailing icon chip",
+      "time_chip": "rounded pill, colored background matches urgency/type (red = today/urgent, blue = scheduled)"
+    },
+    "focal_illustration_card": {
+      "structure": "large centered 3D or semi-transparent anatomical render floating with soft radial glow/vignette behind it, no hard card border around the illustration itself, illustration bleeds toward card edges",
+      "toggle_control": "pill-shaped segmented toggle centered at bottom edge of illustration (e.g. '<< 3D View >>') with chevron affordances indicating more views are swipeable"
+    },
+    "buttons": {
+      "primary_pill_button": {
+        "shape": "fully rounded (pill), height ~36-40px",
+        "background": "accent.primary_blue",
+        "text_color": "#FFFFFF",
+        "icon": "optional trailing arrow icon",
+        "use_case": "primary actions like 'View Records', 'Run', 'Export'"
+      },
+      "secondary_ghost_button": {
+        "shape": "fully rounded (pill)",
+        "background": "transparent or card_surface_alt",
+        "border": "1px solid rgba(0,0,0,0.08)",
+        "text_color": "text.primary",
+        "use_case": "toggles, segmented controls, low-emphasis actions"
+      },
+      "icon_only_button": {
+        "shape": "circle or rounded-square, 28-32px",
+        "background": "transparent, subtle hover background",
+        "use_case": "expand/maximize card, overflow menu"
+      }
+    }
+  },
+
+  "motion_guidelines": {
+    "card_hover": "subtle lift: shadow increases slightly, no scale transform",
+    "chart_update": "smooth line/arc transitions (300-500ms ease-out) when values change, avoid abrupt jumps",
+    "toggle_switch": "sliding pill indicator animates between segmented options (150-250ms)"
+  },
+
+  "imagery_guidelines": {
+    "hero_illustration_style": "solid, realistic-toned 3D organ render — opaque surface, anatomically colored (deep reddish-brown liver tissue), soft specular highlight suggesting a moist/organic surface, NOT an x-ray/wireframe/translucent render",
+    "supporting_icon_illustration_style": "small, single flat-colored realistic icon (e.g. an organ icon) used only in compact stat cards, never as the hero visual",
+    "avoid": "cartoonish icons, heavy drop shadows, saturated multi-color illustrations, stock photography of people, translucent/x-ray treatments on the hero organ"
+  },
+
+  "organ_visualization_spec": {
+    "applies_to": "Digital Liver hero 3D visualization (center focal card)",
+    "visual_direction": "SOLID, realistic organ rendering — NOT translucent/x-ray. This deliberately departs from the dashboard's general translucent-anatomical illustration_guidelines (hero_illustration_style) for this one component, in favor of a recognizable, opaque liver shape. If the resulting saturated organic tones don't perfectly match the light clinical card palette, that's an accepted trade-off — realism takes priority over strict palette-blending here.",
+    "attempted_ui_blending": [
+      "place the organ on a soft radial-gradient vignette matching card_surface/card_surface_alt tones, same as focal_illustration_card.structure, so the card frame still feels consistent even though the organ itself is saturated",
+      "keep ambient/rim lighting cool and soft (neutral white to pale blue) rather than warm studio lighting, so the organ doesn't feel like a photo dropped onto a UI",
+      "keep all surrounding chrome (card border radius, header row, toggle control) fully consistent with components.card and components.focal_illustration_card — only the organ material itself departs from the palette"
+    ],
+    "base_shell": {
+      "style": "solid, opaque 3D liver mesh with realistic anatomical shape (recognizable liver silhouette — larger left-of-frame lobe and a smaller adjacent lobe, smooth-but-textured organic surface), not a generic blob or translucent shell",
+      "material_approach": "MeshStandardMaterial with LOW roughness value inverted — i.e. HIGH roughness (matte to low-gloss finish), near-zero specular highlight. Explicitly avoid a wet/glossy/reflective look — no strong specular highlight or mirror-like sheen anywhere on the surface, even at full health.",
+      "healthy_color": "natural healthy liver tone — reddish-brown, e.g. #8B3A2E to #A8503D range",
+      "surface_texture": "organic wrinkled/creased surface detail via a bump or normal map (fine irregular creases across the lobe surfaces, not smooth) — this is what should read as 'realistic anatomy' instead of shininess",
+      "optional_anatomical_detail": "stretch-only: a few short tube-like geometry stubs at the base/hilum region (representing portal vein, hepatic artery, bile duct stumps) for anatomical recognizability, matte-finished to match the organ, small enough not to distract from the main damage-visualization surface"
+    },
+    "damage_progression": {
+      "overview": "Two visually distinct, independently-driven degradation passes layered on the same solid mesh's surface material, matching the two mechanisms in the underlying lobule simulation. They must read as different patterns, not just different speeds of the same effect.",
+      "healthy_state": "natural reddish-brown glossy surface per base_shell.healthy_color, no discoloration patches",
+
+      "acute_pathway": {
+        "driver": "uniform `acuteDamage` in [0,1], bound to `frac_necrotic` from the simulation",
+        "visual_signature": "ORIGIN-ANCHORED, SPREADING patches — discoloration begins at one or a few localized points on the surface and grows outward over time, never appears uniformly across the whole organ at once",
+        "implementation_approach": "map each lobule's grid position to UV coordinates on the mesh. Identify the highest-damage lobule cluster's centroid each frame and bias a noise field's threshold/offset so patch growth is concentrated near that UV region first, expanding outward as `acuteDamage` rises — do not use a spatially-uniform noise field for this pathway",
+        "color_progression": "healthy reddish-brown → mottled dark red/purple at the wavefront edge → black/necrotic-grey at the fully damaged core, plus slightly increased surface roughness (dead tissue reads duller, less glossy, than healthy tissue)"
+      },
+
+      "chronic_pathway": {
+        "driver": "uniform `chronicLoad` in [0,1], bound to `mean(chronic_load)` across all lobules from the simulation",
+        "visual_signature": "DIFFUSE, WHOLE-ORGAN dulling — surface gradually shifts toward a duller, yellow-brown/fatty tone across most of the mesh roughly simultaneously, with no single origin point and no directional spreading (visually evokes fatty/fibrotic degeneration, distinct from acute necrosis)",
+        "implementation_approach": "use a spatially-flat/uniform noise field (no UV-position bias, unlike the acute pathway) thresholded against `chronicLoad`, so the dulling appears evenly scattered across the whole surface rather than growing from one point",
+        "color_progression": "healthy reddish-brown → uniform dull yellow-tan haze across most of the surface (fatty-change look) → deeper olive-brown mottling at high `chronicLoad` — keep this palette distinctly warmer/yellower than the acute pathway's black/purple, so the two are distinguishable even when both are present"
+      },
+
+      "combined_state_handling": "if both pathways are simultaneously non-zero, render both passes layered (acute discoloration visually on top / higher contrast, chronic yellow-tan haze as an underlying tone across the rest of the surface) — do not average or blend them into one uniform value",
+
+      "failure_state_event": {
+        "trigger": "on `failedAt` being set by the simulation (either failureType 'acute' or 'chronic', per verdict.ts)",
+        "visual_event": "a brief, unmissable transition: a fast color/roughness pulse toward black/necrotic-grey (acute) or deep olive-black (chronic) across the affected pattern, then freeze all organ animation at that frame — do not continue idle-animating a 'dead' organ",
+        "on_shell_label": "small text overlay near the organ, matching VerdictCard's failure badge wording, styled per badge_label typography token",
+        "distinctness_requirement": "must look like a discrete event the viewer notices, not just the natural endpoint of gradual darkening — compress into a sharper, faster transition (~150-250ms) than ordinary progression"
+      },
+
+      "implementation_note": "drive all patch growth with noise fields compared against thresholds derived from the driving uniform(s), never a flat color lerp — a uniform tint looks like a filter, patchy noise-driven damage looks like pathology. The acute/chronic distinction lives in HOW the noise field is spatially structured (origin-biased vs. uniform) AND in the color families used (black/purple necrosis vs. yellow-tan fatty change), not in color alone."
+    }
+  },
+
+  "accessibility_notes": {
+    "contrast": "ensure thin-weight large numerals maintain sufficient contrast against white card backgrounds (#111318 on #FFFFFF passes; avoid using text.muted for primary data values)",
+    "color_only_status": "pair every status color (success/warning/danger) with a text label, not color alone"
+  }
+}

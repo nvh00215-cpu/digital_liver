@@ -1,0 +1,183 @@
+{
+  "design_system_name": "Clinical Soft-UI Dashboard",
+  "description": "A light, clinical/biotech dashboard aesthetic built on soft cards, translucent 3D anatomical renders, thin-weight display numerals, and calm blue/neutral color accents. Optimized for health-monitoring and diagnostic dashboards.",
+
+  "style_keywords": [
+    "clinical",
+    "soft-ui",
+    "airy",
+    "translucent-3d",
+    "data-forward",
+    "minimal-icons",
+    "rounded-cards",
+    "light-mode",
+    "medical-tech"
+  ],
+
+  "color_palette": {
+    "background": {
+      "app_backdrop": "#BFD9F2",
+      "canvas": "#EDEFF2",
+      "card_surface": "#FFFFFF",
+      "card_surface_alt": "#F7F8FA"
+    },
+    "text": {
+      "primary": "#111318",
+      "secondary": "#6B7280",
+      "muted": "#9CA3AF",
+      "on_dark": "#FFFFFF"
+    },
+    "accent": {
+      "primary_blue": "#2F6FED",
+      "primary_blue_light": "#DCE9FB",
+      "secondary_blue_gradient_start": "#8FC7FF",
+      "secondary_blue_gradient_end": "#2F6FED"
+    },
+    "status": {
+      "success": "#2FBF6E",
+      "success_bg": "#E4F7EC",
+      "warning": "#F59E0B",
+      "warning_bg": "#FEF3E2",
+      "danger": "#EF4444",
+      "danger_bg": "#FDE8E8",
+      "info": "#38BDF8",
+      "info_bg": "#E6F7FE"
+    },
+    "chart": {
+      "line_primary": "#2F6FED",
+      "line_gradient_fill": "linear-gradient(180deg, rgba(47,111,237,0.25) 0%, rgba(47,111,237,0) 100%)",
+      "bar_alert": "#EF4444",
+      "bar_neutral": "#DCE9FB",
+      "gauge_track": "#E5E9F0",
+      "gauge_fill": "#2F6FED"
+    },
+    "illustration": {
+      "anatomical_render_tone": "monochrome navy/slate translucent x-ray style, NOT flat color",
+      "anatomical_render_palette": ["#1E2A44", "#3B4A6B", "#8FA3C8", "#FFFFFF"],
+      "flat_icon_illustration_tone": "saturated realistic color (e.g. red lungs), used sparingly for a single focal graphic per card"
+    }
+  },
+
+  "typography": {
+    "font_family_primary": "geometric sans-serif (e.g. 'Inter', 'General Sans', 'Satoshi')",
+    "scale": {
+      "page_title": { "size": "32-36px", "weight": 500, "letter_spacing": "-0.5px" },
+      "section_subtitle": { "size": "14-15px", "weight": 400, "color_ref": "text.secondary" },
+      "card_title": { "size": "14-15px", "weight": 500, "color_ref": "text.primary" },
+      "stat_display_number": { "size": "40-48px", "weight": 300, "note": "thin/light weight for emphasis numerals, NOT bold" },
+      "stat_display_unit": { "size": "13-14px", "weight": 400, "color_ref": "text.muted" },
+      "table_header": { "size": "12-13px", "weight": 500, "color_ref": "text.muted", "letter_spacing": "0.3px", "case": "sentence" },
+      "table_body": { "size": "13-14px", "weight": 400, "color_ref": "text.primary" },
+      "badge_label": { "size": "11-12px", "weight": 500 }
+    }
+  },
+
+  "layout": {
+    "grid_structure": "3-column dashboard grid: left column (stacked stat cards), center column (large focal illustration/visualization card, full height), right column (stacked stat + list cards)",
+    "spacing_unit_base_px": 8,
+    "card_gap_px": 20,
+    "outer_page_padding_px": 32,
+    "responsive_behavior": "columns stack vertically below ~1024px; center focal card always keeps priority/top position on mobile"
+  },
+
+  "components": {
+    "card": {
+      "corner_radius_px": 20,
+      "background": "card_surface",
+      "border": "1px solid rgba(0,0,0,0.04)",
+      "shadow": "0 4px 20px rgba(16,24,40,0.06)",
+      "padding_px": 20,
+      "header_row": "icon-chip + title on left, expand/maximize icon on right, spaced with flex justify-between"
+    },
+    "icon_chip": {
+      "shape": "rounded-square or circle, 32-36px",
+      "background": "accent.primary_blue_light or status_*_bg depending on context",
+      "icon_style": "thin 1.5px stroke line icons, no fill"
+    },
+    "stat_gauge_card": {
+      "structure": "semi-circular arc gauge behind a large thin-weight numeral, small limit/threshold label above the arc",
+      "arc_track_color": "chart.gauge_track",
+      "arc_fill_color": "chart.gauge_fill or status color if out-of-range"
+    },
+    "sparkline_card": {
+      "structure": "large percentage/number top-left, small trend line/area chart bottom filling card width, 2-3 highlighted data-point pills floating above the line showing key values",
+      "line_style": "smooth curve, 2px stroke, gradient fill beneath",
+      "highlight_pill": "small rounded pill with % value, colored by status (red for low/alert, blue/neutral for normal)"
+    },
+    "data_table_card": {
+      "header_row": "icon-chip + title left, primary pill button right (e.g. 'View Records')",
+      "row_style": "checkbox + date + label + category badge, divided by 1px hairline borders, zebra-free (white rows only)",
+      "category_badge": "text-only colored label (no pill background) e.g. orange 'Moderate', green 'Normal', blue 'Mild'"
+    },
+    "list_card": {
+      "structure": "grouped by day/section label (muted small caps), each row = time chip + label + trailing icon chip",
+      "time_chip": "rounded pill, colored background matches urgency/type (red = today/urgent, blue = scheduled)"
+    },
+    "focal_illustration_card": {
+      "structure": "large centered 3D or semi-transparent anatomical render floating with soft radial glow/vignette behind it, no hard card border around the illustration itself, illustration bleeds toward card edges",
+      "toggle_control": "pill-shaped segmented toggle centered at bottom edge of illustration (e.g. '<< 3D View >>') with chevron affordances indicating more views are swipeable"
+    },
+    "buttons": {
+      "primary_pill_button": {
+        "shape": "fully rounded (pill), height ~36-40px",
+        "background": "accent.primary_blue",
+        "text_color": "#FFFFFF",
+        "icon": "optional trailing arrow icon",
+        "use_case": "primary actions like 'View Records', 'Run', 'Export'"
+      },
+      "secondary_ghost_button": {
+        "shape": "fully rounded (pill)",
+        "background": "transparent or card_surface_alt",
+        "border": "1px solid rgba(0,0,0,0.08)",
+        "text_color": "text.primary",
+        "use_case": "toggles, segmented controls, low-emphasis actions"
+      },
+      "icon_only_button": {
+        "shape": "circle or rounded-square, 28-32px",
+        "background": "transparent, subtle hover background",
+        "use_case": "expand/maximize card, overflow menu"
+      }
+    }
+  },
+
+  "motion_guidelines": {
+    "card_hover": "subtle lift: shadow increases slightly, no scale transform",
+    "chart_update": "smooth line/arc transitions (300-500ms ease-out) when values change, avoid abrupt jumps",
+    "toggle_switch": "sliding pill indicator animates between segmented options (150-250ms)"
+  },
+
+  "imagery_guidelines": {
+    "hero_illustration_style": "translucent, x-ray/wireframe or ghosted 3D anatomical render in cool monochrome tones; conveys 'scientific/medical scan' feeling rather than literal photorealism",
+    "supporting_icon_illustration_style": "small, single flat-colored realistic icon (e.g. an organ icon) used only in compact stat cards, never as the hero visual",
+    "avoid": "cartoonish icons, heavy drop shadows, saturated multi-color illustrations, stock photography of people"
+  },
+
+  "organ_visualization_spec": {
+    "applies_to": "Digital Liver hero 3D visualization (center focal card)",
+    "base_shell": {
+      "style": "translucent x-ray/wireframe render, matching illustration_guidelines.hero_illustration_style",
+      "material_approach": "semi-transparent shell (opacity 0.25-0.4) with Fresnel rim-brightening so edges read brighter than the face-on surface, consistent with the reference screenshot's ribcage/spine render",
+      "base_tint": "illustration.anatomical_render_palette cool tones (#1E2A44 / #3B4A6B / #8FA3C8) when healthy",
+      "surface_treatment": "subtle wireframe or scan-line overlay optional, to reinforce 'x-ray' read"
+    },
+    "vessel_network": {
+      "style": "bright red, high-contrast branching vessel lines visible through the translucent shell — the classic contrast-dye angiography look",
+      "color": "#E63946 to #FF4D4D, emissive/additive so it glows through the shell rather than sitting flat on top",
+      "geometry_approach": "procedural branching tube mesh (recursive L-system or simple randomized bifurcating curves) rooted at one entry point (portal vein analog), OR a baked vein-pattern emissive texture mapped onto the shell if time is short",
+      "density": "sparse-to-medium — a few primary branches with 2-3 levels of forking reads clearly at dashboard scale; do not over-branch or it becomes visual noise",
+      "always_visible": "vessels stay visible and red at all health states — they are the constant reference structure against which shell damage color is judged"
+    },
+    "damage_progression": {
+      "driver": "single uniform/state value `damage` in [0,1], bound to (1 - H(t)) from the simulation",
+      "healthy_state": "shell reads cool translucent blue/slate, vessels bright clean red, no dark patches",
+      "mid_damage_state": "irregular noise-based patches on the shell shift from slate toward dull amber/brown, vessel red slightly desaturates",
+      "severe_damage_state": "patches deepen toward black/dark-red necrotic blotches (use Perlin/simplex noise thresholded by `damage` so patches grow organically rather than a uniform color lerp across the whole shell), vessels near damaged regions dim or flicker to suggest impaired flow",
+      "implementation_note": "drive patch growth with a noise field compared against a threshold derived from `damage`, not a flat opacity/color lerp — a uniform tint looks like a filter, patchy noise-driven damage looks like pathology"
+    }
+  },
+
+  "accessibility_notes": {
+    "contrast": "ensure thin-weight large numerals maintain sufficient contrast against white card backgrounds (#111318 on #FFFFFF passes; avoid using text.muted for primary data values)",
+    "color_only_status": "pair every status color (success/warning/danger) with a text label, not color alone"
+  }
+}
